@@ -1,4 +1,4 @@
-package org.ferris.timerservice.timer;
+package org.ferris.ejbcron.ejb;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -13,11 +13,11 @@ import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
-import org.ferris.timerservice.config.ScheduleExpressions;
+import org.ferris.ejbcron.schedule.ScheduleExpressions;
 
 @Startup
 @Singleton
-public class ScheduleExpressionTimer {
+public class TimerEjb {
 
     @Resource
     protected TimerService timerService;

@@ -4,8 +4,62 @@
 
     <groupId>org.ferris</groupId>
     <artifactId>ferris-ejbcron</artifactId>
-    <version>1.0.0.0-SNAPSHOT</version>
+    <version>1.0.0.0</version>
     <packaging>war</packaging>
+    
+    <organization>
+        <name>The Ferris Foundation</name>
+    </organization>
+    
+    <description>
+        A singleton EJB using the TimerService, ScheduleExpressions, and an XML configuration to mimic CRON
+    </description>
+     
+    <url>
+        http://mjremijan.github.io/ferris-ejbcron
+    </url>
+     
+    <issueManagement>
+        <url>https://github.com/mjremijan/ferris-ejbcron/issues</url>
+        <system>GitHub</system>
+    </issueManagement>
+    
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    
+    <scm>
+        <url>https://github.com/mjremijan/ferris-ejbcron</url>
+        <connection>scm:git:git@github.com:mjremijan/ferris-ejbcron.git</connection>
+        <developerConnection>scm:git:git@github.com:mjremijan/ferris-ejbcron.git</developerConnection>
+    </scm>
+    
+    <developers>
+        <developer>
+            <!-- if you have a gravatar image with this email it will show -->
+            <email>mjremijan@yahoo.com</email>
+            <id>mjremijan</id>
+            <name>Michael Remijan</name>
+            <organization>The Ferris Foundation</organization>			
+            <organizationUrl></organizationUrl>
+            <properties>
+                <twitter>@mjremijan</twitter>
+                <!-- picUrl></picUrl> Use this if no gravatar image -->
+            </properties>
+            <roles>
+                <role>Project Owner</role>
+                <role>Architect</role>
+                <role>Lead Developer</role>
+            </roles>
+            <timezone>America/Chicago</timezone>
+            <url>http://www.linkedin.com/in/mjremijan</url>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,9 +77,6 @@
     </dependencies>
 
     <build>
-        <finalName>
-            ${project.artifactId}
-        </finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -37,5 +88,93 @@
             </plugin>
         </plugins>
     </build>
-    <name>ferris-ejbcron</name>
+    
+    <profiles>
+        <profile>
+            <id>site</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>3.4</version>
+                        <executions>
+                            <execution>
+                                <phase>prepare-package</phase>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <profile>
+            <id>site-deploy</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Deploy the web site -->
+                        <groupId>com.github.github</groupId>
+                        <artifactId>site-maven-plugin</artifactId>
+                        <version>0.12</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                                <!-- select the Maven phase in which the plugin will be executed -->
+                                <phase>verify</phase>
+                                <configuration>
+                                    <!-- this matches a the 'server' tag in settings.xml -->
+                                    <server>github</server>
+                                    <!-- The commit message -->
+                                    <message>Deploying EJBCron project site ${project.version}</message>
+                                    <!-- The location where the site is uploaded
+                                    <path>${site.path}</path>  -->
+                                    <!-- Use merge or override the content -->
+                                    <merge>false</merge>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <links>
+                        <link>https://docs.oracle.com/javase/8/docs/api/</link>
+                    </links>
+                </configuration>
+            </plugin>                        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.8.1</version>
+                <reportSets>
+                    <reportSet>
+                        <id>Report Set 1</id>
+                        <reports>
+                            <report>project-team</report>
+                            <report>summary</report>
+                            <report>license</report>
+                            <report>scm</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
+
 </project>

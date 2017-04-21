@@ -1,0 +1,71 @@
+body {
+    font-family: "Franklin Gothic Book","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+a#bannerLeft h2 {
+    font-size: 40px;
+    line-height: 0;
+    padding-bottom: 30px;
+}
+
+a#bannerLeft img {    
+    padding-bottom: 30px;
+}
+
+
+a {
+    color: rgb(98,98,153);
+}
+a:hover {
+    color: rgb(77,77,121);
+}
+
+a.externalLink[href^="http"] {
+    background: none;
+    padding-right: 0px;
+}
+a.externalLink[href^="https"] {
+    background: none;
+    padding-right: 0px;
+}
+
+
+.breadcrumb {
+    background-color: rgb(244, 244, 238);
+}
+.well {
+    background-color: rgb(244, 244, 238);
+}
+
+.nav-header {
+    color: rgb(40%,40%,40%);
+}
+.nav-list>.active>a, .nav-list>.active>a:hover {
+    background-color: rgb(77,77,121);
+}
+
+tt {
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    color: #d14;
+    padding: 2px 4px;
+}
+
+div#twStart {
+    text-align:center;
+}
+div#twStart H2 {
+    font-size: 35px;
+    line-height: 20px;
+}
+div#twStart SPAN {
+    display: block;
+    padding-bottom:30px;
+}
+div#twStart IMG {
+    padding-right: 5px;
+}
+div#twStart A {
+    font-weight:bold;
+    background-image: none;
+}

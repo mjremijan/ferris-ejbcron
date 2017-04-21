@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>Ferris EJBCron</title>
+        <author email="mjremijan@yahoo.com">Michael Remijan</author>
+    </properties>
+
+    <!-- Optional HEAD element, which is copied as is into the XHTML <head> element
+<head>
+     <meta ... />
+</head>
+    -->
+
+    <body>
+        <section name="Quick Start">
+          <subsection name="Download">
+            <p>
+              Download the <a href="${project.scm.url}/releases/download/${project.build.finalName}/${project.build.finalName}.war">${project.build.finalName}.war</a>
+              application.
+            </p>
+            <p>
+                Download <a href="http://www.payara.fish/payara_micro">Payara Micro</a>
+            </p>
+          </subsection>                    
+          <subsection name="XML Configuration">
+            <p>
+              Create an XML configuration document with the schedules and commands
+              you want to run.  See the <a href="https://docs.oracle.com/javaee/7/api/javax/ejb/ScheduleExpression.html">ScheduleExpression API</a> 
+              for more details about what the values in the document may be.  
+              Here is an example:
+            </p>
+            <source><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<ScheduleExpressions>
+    <ScheduleExpression>
+        <Second>0</Second>
+        <Minute>0</Minute>
+        <Hour>15</Hour>
+        <Month>*</Month>
+        <Year>*</Year>
+        <Command>
+            <Executable>C:\Program Files\Internet Explorer\iexplore.exe</Executable>
+            <Arguments>
+                <Argument>http://www.yahoo.com</Argument>
+            </Arguments>
+        </Command>
+    </ScheduleExpression>
+    <ScheduleExpression>
+        <Second>0</Second>
+        <Minute>0</Minute>
+        <Hour>20</Hour>
+        <Month>*</Month>
+        <Year>*</Year>
+        <Command>
+            <Executable>C:\Program Files\Internet Explorer\iexplore.exe</Executable>
+        </Command>
+    </ScheduleExpression>
+</ScheduleExpressions>]]></source>
+          </subsection>
+          <subsection name="Run">
+              <p>
+                  Run the WAR inside Payara Micro with the following command:
+              </p>  
+              <source>java.exe -Dejbcron_schedule=C:\your.xml -jar payara-micro.jar --deploy ${project.build.finalName}.war</source> 
+              <p>
+                  That's it!  your command will be run when scheduled.
+              </p>       
+          </subsection>                  
+        </section>
+    </body>
+</document>

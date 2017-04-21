@@ -1,4 +1,4 @@
-package org.ferris.timerservice.config;
+package org.ferris.ejbcron.schedule;
 
 import javax.enterprise.inject.Vetoed;
 import javax.xml.bind.annotation.XmlElement;

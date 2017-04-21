@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+    <properties>
+        <title>Ferris EJBCron</title>
+        <author email="mjremijan@yahoo.com">Michael Remijan</author>
+    </properties>
+
+    <!-- Optional HEAD element, which is copied as is into the XHTML <head> element
+<head>
+     <meta ... />
+</head>
+    -->
+
+    <body>
+        <section name="">
+            <div id="twStart">
+                <h2>Start Using EJBCron</h2>
+                <span class="nav-header">A singleton EJB using the TimerService, ScheduleExpressions, and an XML configuration to mimic CRON</span>
+                <a href="${project.scm.url}/releases/download/${project.build.finalName}/${project.build.finalName}.war">
+                    <img src="images/application-x-java-archive-icon.png" height="23" />Download WAR
+                </a>                
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                <a href="${project.scm.url}">
+                    <img src="images/octocat-icon.png" />Visit on GitHub
+                </a>
+            </div>
+        </section>
+		
+        <section name="About">
+            <p>                
+                The idea behind EJBCron is to use Java EE technology to 
+                be able to schedule and run commands on a machine in a way that is similar
+                to how CRON does it.  So, the application consists of a <code>@Singleton</code>
+                EJB that is initialized at startup.  During <code>@PostConstruct</code>ion, the 
+                EJB reads an XML configuration file (the location of the file is determined
+                by a system property.  See <a href="quick.html">quick start</a> for more details)
+                and the information in the file is used to create 1 or more
+                <code>ScheduleExpression</code>s.  The <code>TimerService</code> is then
+                used to create a calendar <code>Timer</code> to run the command at
+                the appropriate time. 
+            </p>                        
+        </section>
+    </body>
+</document>
