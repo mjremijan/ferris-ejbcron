@@ -6,6 +6,8 @@
         <Hour>15</Hour>
         <Month>*</Month>
         <Year>*</Year>
+        <DayOfWeek>*</DayOfWeek>
+        <DayOfMonth>*</DayOfMonth>
         <Command>
             <Executable>C:\Program Files\Internet Explorer\iexplore.exe</Executable>
             <Arguments>
@@ -19,6 +21,8 @@
         <Hour>20</Hour>
         <Month>*</Month>
         <Year>*</Year>
+        <DayOfWeek>*</DayOfWeek>
+        <DayOfMonth>*</DayOfMonth>
         <Command>
             <Executable>C:\Program Files\Internet Explorer\iexplore.exe</Executable>
         </Command>

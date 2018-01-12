@@ -21,20 +21,20 @@ public class TimerEjb {
 
     @Resource
     protected TimerService timerService;
-    
+
     @Inject
     protected Instance<ScheduleExpressions> scheduleExpressionsInstance;
-    
+
     @PostConstruct
     public void initialize() {
-        
+
         System.out.printf("Creating ScheduleExpressions%n");
         ScheduleExpressions expressions
             = scheduleExpressionsInstance.get();
-        
+
         expressions.scheduleExpressions.forEach(se -> {
             System.out.printf("Creating ScheduleExpression%n");
-            ScheduleExpression expression 
+            ScheduleExpression expression
                 = new ScheduleExpression();
             if (!se.second.isEmpty()) {
                 expression.second(se.second);
@@ -51,34 +51,40 @@ public class TimerEjb {
             if (!se.year.isEmpty()) {
                 expression.year(se.year);
             }
-            
+            if (!se.dayOfWeek.isEmpty()) {
+                expression.dayOfWeek(se.dayOfWeek);
+            }
+            if (!se.dayOfMonth.isEmpty()) {
+                expression.dayOfWeek(se.dayOfMonth);
+            }
+
             System.out.printf("Creating command list%n");
-            LinkedList<String> strings 
+            LinkedList<String> strings
                 = new LinkedList<>();
             strings.add(se.command.executable);
-            
+
             if (se.command.arguments != null) {
                 if (se.command.arguments.arguments != null) {
                     se.command.arguments.arguments.forEach(arg -> strings.add(arg));
                 }
             }
-            
+
             System.out.printf("Creating TimerConfig%n");
             TimerConfig config
                 = new TimerConfig();
             config.setInfo(strings);
-            
+
             System.out.printf("CALL #createCalenderTimer%n");
             timerService.createCalendarTimer(expression, config);
         });
     }
-    
+
     @Timeout
     public void timeout(Timer timer) {
         System.out.printf("Getting Timer INFO object%n");
         LinkedList<String> cmd
             = (LinkedList<String>)timer.getInfo();
-        
+
         System.out.printf("Create ProcessBuilder%n");
         ProcessBuilder pb
             = new ProcessBuilder(cmd);
